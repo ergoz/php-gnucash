@@ -1,0 +1,16 @@
+{
+    "name": "mrkrstphr/php-gnucash",
+    "description": "GnuCash Entities and Doctrine Mappings",
+    "type": "library",
+    "keywords": [],
+    "homepage": "http://github.com/mrkrstphr/php-gnucash",
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-0": {
+            "GnuCash\\": "src/", 
+            "GnuCashTest\\": "tests/"
+        }
+    }
+}
