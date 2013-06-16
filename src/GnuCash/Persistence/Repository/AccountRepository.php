@@ -16,46 +16,16 @@ class AccountRepository extends AbstractRepository implements AccountRepositoryI
     protected $entityType = 'GnuCash\Domain\Entity\Account';
 
     /**
-     * Gets the balance of all cash accounts.
+     * Gets an accounts balance.
      *
-     * @todo This is tied to the developers accounts...
+     * @param string $guid
      * @return float
      */
-    public function getCashAccountsBalance()
+    public function getAccountBalance($guid)
     {
         $repo = $this->entityManager->getRepository($this->entityType);
         $query = $repo->createNativeNamedQuery('get-visible-account-balance');
-        $balance = $query->execute(['226efaedec0f3c3e280b46fb2633708a']);
-
-        return $balance[0]['balance'];
-    }
-
-    /**
-     * Gets the balance of all short term debts.
-     *
-     * @todo This is tied to the developers accounts...
-     * @return float
-     */
-    public function getShortTermDebtBalance()
-    {
-        $repo = $this->entityManager->getRepository($this->entityType);
-        $query = $repo->createNativeNamedQuery('get-visible-account-balance');
-        $balance = $query->execute(['d955d071f5b0096d25de2562ef758dbd']);
-
-        return $balance[0]['balance'];
-    }
-
-    /**
-     * Gets the balance of all long term debts.
-     *
-     * @todo This is tied to the developers accounts...
-     * @return float
-     */
-    public function getLongTermDebtBalance()
-    {
-        $repo = $this->entityManager->getRepository($this->entityType);
-        $query = $repo->createNativeNamedQuery('get-visible-account-balance');
-        $balance = $query->execute(['2ddc0f2ca7f65595e256271f25a0e372']);
+        $balance = $query->execute([$guid]);
 
         return $balance[0]['balance'];
     }
