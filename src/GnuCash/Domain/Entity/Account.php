@@ -6,7 +6,7 @@ namespace GnuCash\Domain\Entity;
  * Class Account
  * @package GnuCash\Domain\Entity
  */
-class Account extends GuidEntity
+class Account extends AbstractGuidEntity
 {
     /**
      * @var string

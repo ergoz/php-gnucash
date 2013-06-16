@@ -1,13 +1,13 @@
 <?php
 namespace GnuCashTest\Domain\Entity;
 
-use GnuCash\Domain\Entity\GuidEntity;
+use GnuCash\Domain\Entity\AbstractGuidEntity;
 
 /**
  * Class TestGuidEntity
  * @package GnuCashTest\Domain\Entity
  */
-class TestGuidEntity extends GuidEntity
+class TestGuidEntity extends AbstractGuidEntity
 {
     /**
      * @var int

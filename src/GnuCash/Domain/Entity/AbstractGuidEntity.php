@@ -3,10 +3,10 @@
 namespace GnuCash\Domain\Entity;
 
 /**
- * Class GuidEntity
+ * Class AbstractGuidEntity
  * @package GnuCash\Domain\Entity
  */
-abstract class GuidEntity
+abstract class AbstractGuidEntity extends AbstractEntity
 {
     /**
      * @var string

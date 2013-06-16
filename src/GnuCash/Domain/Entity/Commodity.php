@@ -6,7 +6,7 @@ namespace GnuCash\Domain\Entity;
  * Class Commodity
  * @package GnuCash\Domain\Entity
  */
-class Commodity extends GuidEntity
+class Commodity extends AbstractGuidEntity
 {
     /**
      * @var string
