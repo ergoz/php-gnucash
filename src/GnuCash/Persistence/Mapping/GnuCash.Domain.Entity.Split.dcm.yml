@@ -1,0 +1,27 @@
+GnuCash\Domain\Entity\Split:
+  type: entity
+  table: splits
+  id:
+    id:
+      column: guid
+      type: string
+  fields:
+    memo:
+    valueNum:
+      type: integer
+      column: value_num
+    valueDenom:
+      type: integer
+      column: value_denom
+    quantityNum:
+      type: integer
+      column: quantity_num
+    quantityDenom:
+      type: integer
+      column: quantity_denom
+  manyToOne:
+    account:
+      targetEntity: GnuCash\Domain\Entity\Account
+      joinColumn:
+        name: account_guid
+        referencedColumnName: guid

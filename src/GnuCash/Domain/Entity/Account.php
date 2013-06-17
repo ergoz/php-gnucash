@@ -2,6 +2,8 @@
 
 namespace GnuCash\Domain\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Class Account
  * @package GnuCash\Domain\Entity
@@ -47,6 +49,25 @@ class Account extends AbstractGuidEntity
      * @var int
      */
     protected $placeholder;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $children;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $splits;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->children = new ArrayCollection();
+        $this->splits = new ArrayCollection();
+    }
 
     /**
      * @param string $name
@@ -174,5 +195,41 @@ class Account extends AbstractGuidEntity
     public function getPlaceholder()
     {
         return $this->placeholder;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $children
+     * @return $this
+     */
+    public function setChildren(ArrayCollection $children)
+    {
+        $this->children = $children;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $splits
+     * @return $this
+     */
+    public function setSplits($splits)
+    {
+        $this->splits = $splits;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getSplits()
+    {
+        return $this->splits;
     }
 }

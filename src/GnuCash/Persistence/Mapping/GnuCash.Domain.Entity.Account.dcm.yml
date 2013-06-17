@@ -17,3 +17,20 @@ GnuCash\Domain\Entity\Account:
       type: string
   fields:
     name:
+    hidden:
+      type: integer
+  manyToOne:
+    parent:
+      targetEntity: GnuCash\Domain\Entity\Account
+      joinColumn:
+        name: parent_guid
+        referencedColumnName: guid
+  oneToMany:
+    children:
+      targetEntity: GnuCash\Domain\Entity\Account
+      mappedBy: parent
+      orderBy:
+        name: ASC
+    splits:
+      targetEntity: GnuCash\Domain\Entity\Split
+      mappedBy: account
