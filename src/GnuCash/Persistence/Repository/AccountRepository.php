@@ -32,6 +32,20 @@ class AccountRepository extends AbstractRepository implements AccountRepositoryI
     }
 
     /**
+     * @param string$guid
+     * @return array
+     */
+    public function getMonthlyChange($guid)
+    {
+        $repo = $this->entityManager->getRepository($this->entityType);
+        $query = $repo->createNativeNamedQuery('get-monthly-change');
+        $query->setSQL($query->getSQL() . ' ORDER BY 1 DESC LIMIT 12');
+        $change = $query->execute([$guid]);
+
+        return $change;
+    }
+
+    /**
      * @param string $guid
      * @param int $offset
      * @param int $perPage

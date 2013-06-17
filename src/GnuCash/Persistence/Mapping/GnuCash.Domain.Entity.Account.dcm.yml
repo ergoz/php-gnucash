@@ -5,18 +5,30 @@ GnuCash\Domain\Entity\Account:
     get-visible-account-balance:
       resultSetMapping: mapping-balance
       query: SELECT SUM(value_num::numeric(20,2) / value_denom::numeric(20,2)) AS balance FROM splits WHERE account_guid IN(SELECT guid FROM accounts WHERE ? IN(guid, parent_guid) AND hidden = 0);
+    get-monthly-change:
+      resultSetMapping: month-balance
+      query: SELECT to_char(post_date, 'YYYY-mm') AS month, sum(value_num::float / value_denom::float) AS amount FROM splits s JOIN transactions t ON t.guid = s.tx_guid WHERE account_guid = ? GROUP BY 1
   sqlResultSetMappings:
     mapping-balance:
       name: mapping-balance
       columnResult:
         balance:
           name: balance
+    month-balance:
+      name: month-balance
+      columnResult:
+        month:
+          name: month
+        amount:
+          name: amount
   id:
     id:
       column: guid
       type: string
   fields:
     name:
+    type:
+      column: account_type
     hidden:
       type: integer
   manyToOne:
