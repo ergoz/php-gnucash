@@ -4,7 +4,7 @@ GnuCash\Domain\Entity\Account:
   namedNativeQueries:
     get-visible-account-balance:
       resultSetMapping: mapping-balance
-      query: SELECT SUM(value_num::numeric(20,2) / value_denom::numeric(20,2)) AS balance FROM splits WHERE account_guid IN(SELECT guid FROM accounts WHERE parent_guid = ? AND hidden = 0);
+      query: SELECT SUM(value_num::numeric(20,2) / value_denom::numeric(20,2)) AS balance FROM splits WHERE account_guid IN(SELECT guid FROM accounts WHERE ? IN(guid, parent_guid) AND hidden = 0);
   sqlResultSetMappings:
     mapping-balance:
       name: mapping-balance

@@ -2,6 +2,7 @@
 
 namespace GnuCash\Persistence\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use GnuCash\Domain\Repository\AccountRepositoryInterface;
 
 /**
@@ -30,7 +31,13 @@ class AccountRepository extends AbstractRepository implements AccountRepositoryI
         return $balance[0]['balance'];
     }
 
-    public function getTransactions($guid)
+    /**
+     * @param string $guid
+     * @param int $offset
+     * @param int $perPage
+     * @return Paginator
+     */
+    public function getTransactions($guid, $offset = 0, $perPage = 20)
     {
         $builder = $this->entityManager->createQueryBuilder()
             ->select('s, t')
@@ -38,11 +45,12 @@ class AccountRepository extends AbstractRepository implements AccountRepositoryI
             ->join('s.transaction', 't')
             ->where('s.account = :guid')
             ->orderBy('t.posted', 'DESC')
-            ->setMaxResults(20)
+            ->setMaxResults($perPage)
+            ->setFirstResult($offset)
             ->setParameter('guid', $guid);
 
-        $query = $builder->getQuery();
+        $paginator = new Paginator($builder, true);
 
-        return $query->getResult();
+        return $paginator;
     }
 }
