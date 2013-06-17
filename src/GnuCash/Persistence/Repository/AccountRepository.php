@@ -29,4 +29,20 @@ class AccountRepository extends AbstractRepository implements AccountRepositoryI
 
         return $balance[0]['balance'];
     }
+
+    public function getTransactions($guid)
+    {
+        $builder = $this->entityManager->createQueryBuilder()
+            ->select('s, t')
+            ->from('GnuCash\\Domain\\Entity\\Split', 's')
+            ->join('s.transaction', 't')
+            ->where('s.account = :guid')
+            ->orderBy('t.posted', 'DESC')
+            ->setMaxResults(20)
+            ->setParameter('guid', $guid);
+
+        $query = $builder->getQuery();
+
+        return $query->getResult();
+    }
 }

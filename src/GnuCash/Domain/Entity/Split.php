@@ -13,6 +13,11 @@ class Split extends AbstractGuidEntity
      */
     protected $account;
 
+    /**
+     * @var Transaction
+     */
+    protected $transaction;
+
     protected $memo;
 
     protected $valueNum;
@@ -29,5 +34,21 @@ class Split extends AbstractGuidEntity
     public function getValue()
     {
         return $this->valueNum / $this->valueDenom;
+    }
+
+    /**
+     * @param \GnuCash\Domain\Entity\Transaction $transaction
+     */
+    public function setTransaction($transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
+    /**
+     * @return \GnuCash\Domain\Entity\Transaction
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
     }
 }

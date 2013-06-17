@@ -1,0 +1,15 @@
+GnuCash\Domain\Entity\Transaction:
+  type: entity
+  table: transactions
+  id:
+    id:
+      column: guid
+      type: string
+  fields:
+    description:
+    entered:
+      type: datetime
+      column: enter_date
+    posted:
+      type: datetime
+      column: post_date

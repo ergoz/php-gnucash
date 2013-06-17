@@ -25,3 +25,8 @@ GnuCash\Domain\Entity\Split:
       joinColumn:
         name: account_guid
         referencedColumnName: guid
+    transaction:
+      targetEntity: GnuCash\Domain\Entity\Transaction
+      joinColumn:
+        name: tx_guid
+        referencedColumnName: guid
